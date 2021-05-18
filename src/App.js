@@ -3,16 +3,13 @@ import * as API from "./utils/API";
 import Navbar from "./components/Navbar";
 import Directory from "./components/Directory";
 import Footer from "./components/Footer";
-import UserContext from "./utils/UserContext";
+import UsersContext from "./utils/UsersContext";
 import './App.css';
 
 function App() {
 
   const [usersState, setUsersState] = useState({
-    firstname: '',
-    lastname: '',
-    email: '',
-    image: ''
+    users: []
   });
 
   useEffect(() => {
@@ -25,9 +22,9 @@ function App() {
     <div>
       <Navbar />
       <main>
-        <UserContext.Provider value={{ usersState }}>
+        <UsersContext.Provider value={{ users: usersState }}>
           <Directory />
-        </UserContext.Provider>
+        </UsersContext.Provider>
       </main>
       <Footer />
     </div>

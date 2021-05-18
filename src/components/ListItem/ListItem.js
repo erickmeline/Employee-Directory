@@ -1,10 +1,10 @@
 import React from "react";
 
-function ListItem() {
+function ListItem({ user }) {
   return (
-    <div>
-      List
-    </div>
+    <li key={user.email}>
+      {user.firstname} {user.lastname}
+    </li>
   );
 }
 
