@@ -1,12 +1,15 @@
 import React from "react";
-import Search from "./components/Search";
-import List from "./components/List";
+import ListItem from "../../components/ListItem";
 
 function Directory() {
   return (
-    <div className="container">
-      <Search />
-      <List />
+    <div className="container-fluid">
+      <div>
+        search
+      </div>
+      <ul className="list-group">
+        <ListItem />
+      </ul>
     </div>
   )
 }

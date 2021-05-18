@@ -3,7 +3,7 @@ import * as API from "./utils/API";
 import Navbar from "./components/Navbar";
 import Directory from "./components/Directory";
 import Footer from "./components/Footer";
-import UserContext from "../utils/UserContext";
+import UserContext from "./utils/UserContext";
 import './App.css';
 
 function App() {

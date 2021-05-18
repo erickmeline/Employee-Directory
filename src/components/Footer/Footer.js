@@ -1,10 +1,9 @@
 import React from "react";
-import "./style.css";
 
 function Footer() {
   return (
-    <footer className="footer">
-      <span>Employee Directory { new Date().getFullYear() }</span>
+    <footer>
+      <p>Employee Directory { new Date().getFullYear() }</p>
     </footer>
   );
 }
