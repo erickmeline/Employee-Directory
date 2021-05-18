@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-  getUsersByLanguage: function() {
+  loadUsers: function() {
     return new Promise((resolve, reject) => {
       axios.get("https://randomuser.me/api/?results=15").then((res) => {
         const users = res.data.results;
