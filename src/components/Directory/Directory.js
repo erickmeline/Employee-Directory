@@ -3,17 +3,24 @@ import ListItem from "../../components/ListItem";
 import UsersContext from "../../utils/UsersContext";
 
 function Directory() {
-  const users = useContext(UsersContext);console.log('users',users);
+  const users = useContext(UsersContext);
   return (
     <div className="container-fluid">
-      <div>
-        search
-      </div>
-      <ul className="list-group">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
         {
-          users.map((user, i) => <ListItem key={i} user={user} />)
+          users.map((user, i) => <ListItem key={i} user={user} index={i + 1} />)
         }
-      </ul>
+        </tbody>
+      </table>
     </div>
   )
 }

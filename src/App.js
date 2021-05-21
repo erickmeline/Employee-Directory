@@ -18,7 +18,7 @@ function App() {
     API.getUsers().then(res => setUsers(res))
       .catch(err => console.log(err));
   };
-console.log('usersState',users);
+
   return (
     <div>
       <Navbar />
