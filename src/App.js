@@ -12,19 +12,23 @@ function App() {
 
   useEffect(() => {
     loadUsers()
-  }, [])
+  }, []);
 
   function loadUsers() {
     API.getUsers().then(res => setUsers(res))
       .catch(err => console.log(err));
   };
 
+  function filter(e) {console.log('called filter');
+    console.log('value',e.target.value);
+  };
+
   return (
     <div>
-      <Navbar />
+      <Navbar filter={filter} />
       <main>
-        <UsersContext.Provider value={ users }>
-          <Directory />
+        <UsersContext.Provider value={ users}>
+          <Directory filter={filter} />
         </UsersContext.Provider>
       </main>
       <Footer />

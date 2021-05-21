@@ -6,12 +6,11 @@ export default {
     const users = res.data.results;
     const results = users.map((user) => {
       return {
-        firstname: user.name.first,
-        lastname: user.name.last,
+        name: user.name.first + ' ' + user.name.last,
         email: user.email,
         image: user.picture.thumbnail
       };
-    });console.log('results',results);
+    });
     return results;
     }).catch((err) => console.log(err));
   }
