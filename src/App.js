@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import * as API from "./utils/API";
+import API from "./utils/API";
 import Navbar from "./components/Navbar";
 import Directory from "./components/Directory";
 import Footer from "./components/Footer";
@@ -8,21 +8,22 @@ import './App.css';
 
 function App() {
 
-  const [usersState, setUsersState] = useState({
-    users: []
-  });
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    API.loadUsers.then((res) => {
-      setUsersState(res);
-    }).catch(err => console.log(err));;
-  }, []);
+    loadUsers()
+  }, [])
 
+  function loadUsers() {
+    API.getUsers().then(res => setUsers(res))
+      .catch(err => console.log(err));
+  };
+console.log('usersState',users);
   return (
     <div>
       <Navbar />
       <main>
-        <UsersContext.Provider value={{ users: usersState }}>
+        <UsersContext.Provider value={ users }>
           <Directory />
         </UsersContext.Provider>
       </main>

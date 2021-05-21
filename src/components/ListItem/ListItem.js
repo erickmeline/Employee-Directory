@@ -2,7 +2,7 @@ import React from "react";
 
 function ListItem({ user }) {
   return (
-    <li key={user.email}>
+    <li>
       {user.firstname} {user.lastname}
     </li>
   );

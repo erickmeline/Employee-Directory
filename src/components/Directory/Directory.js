@@ -3,7 +3,7 @@ import ListItem from "../../components/ListItem";
 import UsersContext from "../../utils/UsersContext";
 
 function Directory() {
-  const { users } = useContext(UsersContext);
+  const users = useContext(UsersContext);console.log('users',users);
   return (
     <div className="container-fluid">
       <div>
@@ -11,7 +11,7 @@ function Directory() {
       </div>
       <ul className="list-group">
         {
-          users.map((user, i) => <ListItem user={user} />)
+          users.map((user, i) => <ListItem key={i} user={user} />)
         }
       </ul>
     </div>
