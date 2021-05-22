@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import ListItem from "../../components/ListItem";
-import UsersContext from "../../utils/UsersContext";
 
 function Directory(props) {
-  const users = useContext(UsersContext);
+  const users = props.search ?  props.sortList : props.users;
   return (
     <div className="container-fluid">
       <table className="table table-hover">
@@ -11,7 +10,7 @@ function Directory(props) {
           <tr>
             <th scope="col">#</th>
             <th scope="col">Photo</th>
-            <th scope="col" onClick={(e) => {props.filter(e)}}>Name</th>
+            <th scope="col"><a className="clickable" onClick={(e) => {props.filter(e)}}>Name <span className={props.toggle}></span></a></th>
             <th scope="col">Email</th>
           </tr>
         </thead>

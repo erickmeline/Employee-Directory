@@ -1,39 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import API from "./utils/API";
 import Navbar from "./components/Navbar";
 import Directory from "./components/Directory";
 import Footer from "./components/Footer";
-import UsersContext from "./utils/UsersContext";
 import './App.css';
 
-function App() {
+class App extends React.Component {
+  state = { users: [], sortList: [], toggle: 'dn', search: '' };
 
-  const [users, setUsers] = useState([]);
+  componentDidMount() {
+    this.loadUsers();
+  }
 
-  useEffect(() => {
-    loadUsers()
-  }, []);
+  loadUsers = () => {
+    API.getUsers().then(res => this.setState({users: res})).catch(err => console.log(err));
+  }
 
-  function loadUsers() {
-    API.getUsers().then(res => setUsers(res))
-      .catch(err => console.log(err));
-  };
+  filter = (e) => {
+    let sortList = this.state.users;
+    let toggle = this.state.toggle;
+    if (e.target.value) {
+      sortList = sortList.filter((user) => user.name.toLowerCase().includes(e.target.value.toLowerCase()))
+      this.setState({ search: e.target.value });
+    }
+    else {
+      sortList = sortList.reverse();
+      toggle === 'dn' ? this.setState({ toggle: 'up' }) : this.setState({ toggle: 'dn' });
+    }
+    this.setState({ sortList: sortList });
+  }
 
-  function filter(e) {console.log('called filter');
-    console.log('value',e.target.value);
-  };
-
-  return (
-    <div>
-      <Navbar filter={filter} />
-      <main>
-        <UsersContext.Provider value={ users}>
-          <Directory filter={filter} />
-        </UsersContext.Provider>
-      </main>
-      <Footer />
-    </div>
-  );
+  render() {
+    const { users, sortList, toggle, search } = this.state;
+    return (
+      <div>
+        <Navbar filter={this.filter} />
+        <main>
+          <Directory filter={this.filter} users={users} sortList={sortList} toggle={toggle} search={search} />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default App;

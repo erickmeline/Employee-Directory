@@ -9,7 +9,7 @@ function Navbar(props) {
         </h1>
       </div>
       <div className="form-inline my-2 my-lg-0">
-        <input className="form-control mr-sm-2" type="search" placeholder="Filter" onChange={(e) => {props.filter(e)}} onBlur={(e) => {e.target.value = ''}} />
+        <input className="form-control mr-sm-2" type="search" placeholder="Filter" onChange={(e) => {props.filter(e)}} />
       </div>
     </nav>
   );
